@@ -1,7 +1,7 @@
 
 /* ==========================================
    PERKPILOT - AI LOYALTY CHATBOT
-   Gemini Integration + Offline Fallback
+   Gemini Cloud AI + Built-in Fallback
    ========================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const chatbotMessages =
         document.getElementById("chatbotMessages");
 
-    // Existing PerkPilot programme database
+    // Existing loyalty programme database
     const loyaltyProgrammes =
         typeof programmes !== "undefined"
             ? programmes
@@ -374,12 +374,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =====================================
-    // REAL GEMINI AI CONNECTION
+    // REAL GEMINI CLOUD AI CONNECTION
     // =====================================
 
-    // Local backend address.
-    // Replace with the cloud URL after deployment.
-    const AI_URL = "http://127.0.0.1:8001/chat";
+    // Our publicly hosted Render backend
+    const AI_URL =
+        "https://perkpilot-dbht.onrender.com/chat";
 
     let isSending = false;
 
@@ -420,17 +420,17 @@ document.addEventListener("DOMContentLoaded", () => {
         chatbotMessages.scrollTop =
             chatbotMessages.scrollHeight;
 
-        // Stop requests that take too long
+        // Allow time for Render to wake up
         const controller = new AbortController();
 
         const timeoutId = setTimeout(
             () => controller.abort(),
-            45000
+            120000
         );
 
         try {
 
-            // Send request to FastAPI
+            // Send message to cloud FastAPI
             const response = await fetch(AI_URL, {
 
                 method: "POST",
@@ -465,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
             }
 
-            // Display Gemini answer
+            // Display Gemini AI response
             addMessage(
                 data.reply,
                 "bot"
@@ -478,7 +478,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 error
             );
 
-            // Use old chatbot when AI is unavailable
+            // Fallback if Gemini is unavailable
             const fallback =
                 generateResponse(message);
 
