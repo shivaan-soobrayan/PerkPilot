@@ -1,0 +1,31 @@
+
+# =====================================
+# PERKPILOT - GIT IGNORE
+# =====================================
+
+# Python virtual environments
+.venv/
+venv/
+backend/.venv/
+
+# API keys and environment secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Local VS Code settings
+.vscode/
+
+# Logs
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
