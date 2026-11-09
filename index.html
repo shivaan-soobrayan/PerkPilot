@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 
-    <!-- NEW SMART WALLET STYLING -->
+    <!-- SMART WALLET STYLING -->
     <style>
         #wallet {
             background: linear-gradient(
@@ -584,7 +584,7 @@
         </section>
 
         <!-- =======================================
-             NEW PERKPILOT 2.0 SMART REWARDS WALLET
+             PERKPILOT SMART REWARDS WALLET
         ======================================== -->
         <section id="wallet" aria-labelledby="walletTitle">
 
@@ -845,7 +845,7 @@
 
         </section>
 
-        <!-- ORIGINAL SMART LOYALTY ADVISOR -->
+        <!-- SMART LOYALTY ADVISOR -->
         <section class="advisor-section" id="advisor">
 
             <div class="container">
@@ -1051,7 +1051,7 @@
 
                 </div>
 
-                <!-- ORIGINAL RECOMMENDATION RESULTS -->
+                <!-- RECOMMENDATION RESULTS -->
                 <div
                     id="results"
                     class="results-section"
@@ -1146,9 +1146,7 @@
 
     </footer>
 
-    <!-- =====================================
-         EXISTING PERKPILOT AI CHATBOT
-    ====================================== -->
+    <!-- EXISTING PERKPILOT AI CHATBOT -->
     <div class="chatbot-container">
 
         <button
@@ -1225,16 +1223,21 @@
 
     </div>
 
-    <!-- EXISTING CHATBOT CODE -->
+    <!-- =====================================
+         LOAD ALL REQUIRED JAVASCRIPT FILES
+         Each file must load ONLY ONCE
+    ====================================== -->
+
     <script src="bot.js"></script>
 
-    <!-- NEW WALLET DATA STORAGE CODE -->
     <script src="wallet.js"></script>
-    
+
     <script src="cinema-rules.js"></script>
 
+    <script src="food-rules.js"></script>
+
     <!-- =====================================
-         NEW WALLET INTERFACE LOGIC
+         SMART WALLET INTERFACE LOGIC
     ====================================== -->
     <script>
     (() => {
@@ -1809,7 +1812,11 @@
     })();
     </script>
 
-<script src="cinema-ui.js"></script>
-
+    <!-- CINEMA UI LOADS AFTER WALLET INTERFACE -->
+    <script src="cinema-ui.js"></script>
+ 
+    <!-- FOOD & DINING REWARDS INTERFACE -->
+    <script src="food-ui.js"></script>
+    
 </body>
 </html>
