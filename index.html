@@ -3,17 +3,322 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>PerkPilot | Your Smart Loyalty Advisor</title>
 
     <meta name="description"
-          content="Discover South African loyalty programmes
-          that match your lifestyle, needs and spending habits.">
+          content="Discover South African loyalty programmes that match your lifestyle and learn how to use your existing rewards.">
 
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+
+    <!-- NEW SMART WALLET STYLING -->
+    <style>
+        #wallet {
+            background: linear-gradient(
+                135deg,
+                #0c1126 0%,
+                #171635 48%,
+                #22153e 100%
+            );
+            color: #f5f4ff;
+            padding: 92px 0;
+        }
+
+        #wallet .wallet-heading {
+            text-align: center;
+            max-width: 730px;
+            margin: 0 auto 35px;
+        }
+
+        #wallet .wallet-eyebrow {
+            color: #b9a6ff;
+            font-weight: 700;
+            letter-spacing: .18em;
+            font-size: 12px;
+        }
+
+        #wallet h2 {
+            font-size: clamp(32px, 4vw, 47px);
+            margin: 9px 0 12px;
+            color: white;
+        }
+
+        #wallet .wallet-heading p {
+            color: #cbc9e4;
+            line-height: 1.7;
+        }
+
+        #wallet .wallet-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 23px;
+            align-items: start;
+        }
+
+        #wallet .wallet-panel {
+            padding: 29px;
+            border-radius: 22px;
+            border: 1px solid rgba(165, 153, 254, .25);
+            background: rgba(255, 255, 255, .055);
+            box-shadow: 0 18px 44px rgba(0, 0, 0, .14);
+        }
+
+        #wallet .wallet-panel h3 {
+            font-size: 22px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        #wallet .wallet-subtext {
+            color: #c4c1da;
+            font-size: 13px;
+            line-height: 1.65;
+            margin-bottom: 19px;
+        }
+
+        #wallet .wallet-field {
+            display: grid;
+            gap: 7px;
+            margin-bottom: 17px;
+        }
+
+        #wallet .wallet-field label {
+            font-weight: 600;
+            font-size: 13px;
+            color: #eeeaff;
+        }
+
+        #wallet input,
+        #wallet select,
+        #wallet textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border-radius: 11px;
+            border: 1px solid #767092;
+            color: #fff;
+            background: #14172e;
+            font: inherit;
+            font-size: 14px;
+        }
+
+        #wallet select option {
+            color: #fff;
+            background: #14172e;
+        }
+
+        #wallet textarea {
+            min-height: 88px;
+            resize: vertical;
+        }
+
+        #wallet input:focus,
+        #wallet select:focus,
+        #wallet textarea:focus {
+            outline: 2px solid #9b86ff;
+            outline-offset: 1px;
+        }
+
+        #wallet .wallet-button {
+            border: none;
+            background: linear-gradient(
+                120deg,
+                #8670ff,
+                #567ded
+            );
+            color: #fff;
+            padding: 13px 18px;
+            border-radius: 11px;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 700;
+            transition: transform .2s;
+        }
+
+        #wallet .wallet-button:hover {
+            transform: translateY(-2px);
+        }
+
+        #wallet .wallet-button.secondary {
+            background: transparent;
+            border: 1px solid #aaa0e0;
+            color: #e4ddff;
+        }
+
+        #wallet .wallet-button:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+        }
+
+        #wallet .wallet-button:focus-visible,
+        #wallet .wallet-small-button:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 2px;
+        }
+
+        #wallet .wallet-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        #wallet .wallet-list {
+            display: grid;
+            gap: 10px;
+            margin: 12px 0 20px;
+        }
+
+        #wallet .wallet-account {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 13px;
+            background: #ffffff0d;
+            border: 1px solid #ffffff24;
+            border-radius: 13px;
+        }
+
+        #wallet .wallet-icon {
+            display: grid;
+            place-items: center;
+            min-width: 39px;
+            height: 39px;
+            border-radius: 11px;
+            background: #8e72ff33;
+            font-size: 18px;
+        }
+
+        #wallet .wallet-account-details {
+            min-width: 0;
+            flex: 1;
+        }
+
+        #wallet .wallet-account-name {
+            display: block;
+            overflow-wrap: anywhere;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        #wallet .wallet-balance {
+            display: block;
+            color: #d9cbff;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        #wallet .wallet-account-actions {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        #wallet .wallet-small-button {
+            padding: 7px 9px;
+            border: 1px solid #9990c0;
+            border-radius: 8px;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        #wallet .wallet-small-button.danger {
+            border-color: #ce8fa4;
+            color: #ffbccc;
+        }
+
+        #wallet .wallet-empty {
+            border: 1px dashed #8b81b6;
+            border-radius: 12px;
+            color: #bfbad8;
+            padding: 18px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        #wallet .wallet-message {
+            font-size: 13px;
+            color: #c7ffdc;
+            min-height: 22px;
+            padding-top: 9px;
+        }
+
+        #wallet .wallet-message.error {
+            color: #ffb5bd;
+        }
+
+        #wallet .wallet-privacy {
+            color: #aca9c8;
+            font-size: 12px;
+            line-height: 1.6;
+            margin-top: 14px;
+        }
+
+        #wallet .wallet-results {
+            margin-top: 24px;
+        }
+
+        #wallet .wallet-result {
+            border: 1px solid #ffffff2d;
+            border-radius: 12px;
+            background: #ffffff0b;
+            padding: 14px;
+            margin-top: 10px;
+        }
+
+        #wallet .wallet-result strong {
+            color: #fff;
+        }
+
+        #wallet .wallet-result p {
+            color: #d1cfe3;
+            font-size: 13px;
+            line-height: 1.65;
+            margin-top: 5px;
+        }
+
+        #wallet .wallet-result-tag {
+            color: #bcaaff;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        #wallet .wallet-footnote {
+            color: #a9a4c4;
+            font-size: 12px;
+            line-height: 1.65;
+            padding-top: 12px;
+        }
+
+        #wallet [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 780px) {
+            #wallet .wallet-layout {
+                grid-template-columns: 1fr;
+            }
+
+            #wallet .wallet-panel {
+                padding: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #wallet .wallet-account {
+                align-items: flex-start;
+                flex-wrap: wrap;
+            }
+
+            #wallet .wallet-account-actions {
+                margin-left: 51px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -31,6 +336,7 @@
                 <a href="#home">Home</a>
                 <a href="#how-it-works">How It Works</a>
                 <a href="#programmes">Rewards</a>
+                <a href="#wallet">My Points Wallet</a>
                 <a href="#advisor">Find My Rewards</a>
             </nav>
 
@@ -41,9 +347,9 @@
         </div>
     </header>
 
-
-    <!-- HERO SECTION -->
     <main>
+
+        <!-- HERO SECTION -->
         <section class="hero" id="home">
 
             <div class="container hero-content">
@@ -74,14 +380,12 @@
 
                     <div class="hero-buttons">
 
-                        <a href="#advisor"
-                           class="primary-button">
+                        <a href="#advisor" class="primary-button">
                             Find My Perfect Rewards →
                         </a>
 
-                        <a href="#how-it-works"
-                           class="secondary-button">
-                            How It Works
+                        <a href="#wallet" class="secondary-button">
+                            💳 Use My Existing Points
                         </a>
 
                     </div>
@@ -100,13 +404,13 @@
 
                         <div class="preview-header">
                             <span>✦ PerkPilot</span>
+
                             <span class="preview-status">
                                 SMART MATCH
                             </span>
                         </div>
 
                         <div class="preview-main">
-
                             <span class="preview-emoji">🎁</span>
 
                             <h2>
@@ -118,7 +422,6 @@
                                 Find programmes that
                                 fit your everyday life.
                             </p>
-
                         </div>
 
                         <div class="preview-tags">
@@ -135,14 +438,12 @@
 
         </section>
 
-
         <!-- REWARD CATEGORIES -->
         <section class="categories" id="programmes">
 
             <div class="container">
 
                 <div class="section-heading">
-
                     <span class="section-label">
                         DISCOVER YOUR PERKS
                     </span>
@@ -156,7 +457,6 @@
                         we help you discover loyalty
                         programmes worth exploring.
                     </p>
-
                 </div>
 
                 <div class="category-grid">
@@ -221,14 +521,12 @@
 
         </section>
 
-
         <!-- HOW IT WORKS -->
         <section class="how-it-works" id="how-it-works">
 
             <div class="container">
 
                 <div class="section-heading">
-
                     <span class="section-label">
                         SIMPLE & SMART
                     </span>
@@ -239,14 +537,15 @@
                         Three simple steps to finding
                         the right loyalty programmes.
                     </p>
-
                 </div>
 
                 <div class="steps-grid">
 
                     <article class="step-card">
                         <div class="step-number">01</div>
+
                         <h3>Tell Us About Yourself</h3>
+
                         <p>
                             Select your interests,
                             spending habits and
@@ -256,7 +555,9 @@
 
                     <article class="step-card">
                         <div class="step-number">02</div>
+
                         <h3>Get Smart Recommendations</h3>
+
                         <p>
                             Our recommendation system
                             matches your preferences
@@ -266,7 +567,9 @@
 
                     <article class="step-card">
                         <div class="step-number">03</div>
+
                         <h3>Compare & Choose</h3>
+
                         <p>
                             Explore your matches,
                             compare their benefits,
@@ -280,8 +583,269 @@
 
         </section>
 
+        <!-- =======================================
+             NEW PERKPILOT 2.0 SMART REWARDS WALLET
+        ======================================== -->
+        <section id="wallet" aria-labelledby="walletTitle">
 
-        <!-- SMART LOYALTY ADVISOR -->
+            <div class="container">
+
+                <div class="wallet-heading">
+
+                    <span class="wallet-eyebrow">
+                        NEW · SMART REWARDS WALLET
+                    </span>
+
+                    <h2 id="walletTitle">
+                        Your Points. Your Possibilities.
+                    </h2>
+
+                    <p>
+                        Already belong to loyalty programmes?
+                        Add your existing balances, then tell
+                        PerkPilot what you want to do — like
+                        watching a movie, eating out,
+                        or buying groceries.
+                    </p>
+
+                </div>
+
+                <div class="wallet-layout">
+
+                    <!-- WALLET INPUT PANEL -->
+                    <div class="wallet-panel">
+
+                        <h3>💳 My Loyalty Wallet</h3>
+
+                        <p class="wallet-subtext">
+                            Enter the balances shown by your
+                            loyalty providers. PerkPilot does
+                            not connect to or change your
+                            actual accounts.
+                        </p>
+
+                        <form id="walletForm">
+
+                            <div class="wallet-field">
+
+                                <label for="walletProgramme">
+                                    Loyalty programme
+                                </label>
+
+                                <input
+                                    id="walletProgramme"
+                                    name="programme"
+                                    list="walletProgrammeSuggestions"
+                                    placeholder="e.g. Discovery Vitality"
+                                    maxlength="100"
+                                    autocomplete="off"
+                                    required
+                                >
+
+                                <datalist id="walletProgrammeSuggestions">
+                                    <option value="Discovery Vitality">
+                                    <option value="Ster-Kinekor SK Club">
+                                    <option value="Pick n Pay Smart Shopper">
+                                    <option value="Clicks ClubCard">
+                                    <option value="Checkers Xtra Savings">
+                                    <option value="Spur Family Club">
+                                    <option value="Starbucks Rewards">
+                                    <option value="SAA Voyager">
+                                    <option value="FNB eBucks">
+                                </datalist>
+
+                            </div>
+
+                            <div class="wallet-field">
+
+                                <label for="walletPoints">
+                                    Your current points / reward balance
+                                </label>
+
+                                <input
+                                    id="walletPoints"
+                                    name="points"
+                                    type="number"
+                                    min="0"
+                                    step="any"
+                                    placeholder="e.g. 2500"
+                                    required
+                                >
+
+                            </div>
+
+                            <button
+                                class="wallet-button"
+                                type="submit">
+                                ＋ Save to My Wallet
+                            </button>
+
+                            <p
+                                class="wallet-message"
+                                id="walletMessage"
+                                role="status"
+                                aria-live="polite">
+                            </p>
+
+                        </form>
+
+                        <h3 style="font-size:18px;margin-top:24px">
+                            Saved programmes
+                        </h3>
+
+                        <div
+                            id="walletAccounts"
+                            class="wallet-list"
+                            aria-live="polite">
+
+                            <p class="wallet-empty">
+                                No programmes added yet.
+                                Start by entering one of your
+                                existing loyalty memberships above.
+                            </p>
+
+                        </div>
+
+                        <p class="wallet-privacy">
+                            🔒 Balances are stored only in this browser.
+                            They do not automatically sync, refresh
+                            or deduct when you spend points.
+                            On a shared device, other browser users
+                            may see them.
+                        </p>
+
+                    </div>
+
+                    <!-- REWARD REDEMPTION PANEL -->
+                    <div class="wallet-panel">
+
+                        <h3>
+                            ✨ What Can I Use My Rewards For?
+                        </h3>
+
+                        <p class="wallet-subtext">
+                            Choose an activity. We'll highlight
+                            potentially relevant programmes from
+                            your own wallet, then you can ask
+                            the AI assistant for more guidance.
+                        </p>
+
+                        <form id="walletGoalForm">
+
+                            <div class="wallet-field">
+
+                                <label for="walletGoal">
+                                    I want to…
+                                </label>
+
+                                <select id="walletGoal" required>
+
+                                    <option value="movies">
+                                        🎬 Watch a movie
+                                    </option>
+
+                                    <option value="food">
+                                        🍔 Eat out or buy a drink
+                                    </option>
+
+                                    <option value="groceries">
+                                        🛒 Buy groceries
+                                    </option>
+
+                                    <option value="shopping">
+                                        🛍️ Go shopping
+                                    </option>
+
+                                    <option value="travel">
+                                        ✈️ Travel
+                                    </option>
+
+                                    <option value="fitness">
+                                        💪 Fitness or wellness
+                                    </option>
+
+                                    <option value="anything">
+                                        🎁 See all possible uses
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="wallet-field">
+
+                                <label for="walletDetails">
+                                    Any details? (optional)
+                                </label>
+
+                                <textarea
+                                    id="walletDetails"
+                                    maxlength="240"
+                                    placeholder="e.g. Two movie tickets this weekend in Pretoria">
+                                </textarea>
+
+                            </div>
+
+                            <div class="wallet-actions">
+
+                                <button
+                                    type="submit"
+                                    class="wallet-button">
+                                    🔎 Explore My Rewards
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="wallet-button secondary"
+                                    id="walletAskAI">
+                                    🤖 Ask AI About My Points
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                        <p
+                            id="walletGoalStatus"
+                            class="wallet-message"
+                            role="status"
+                            aria-live="polite">
+                        </p>
+
+                        <div
+                            id="walletSuggestions"
+                            class="wallet-results"
+                            aria-live="polite"
+                            hidden>
+                        </div>
+
+                        <p class="wallet-footnote">
+                            Suggestions are starting points,
+                            not confirmed redemption offers.
+                            Loyalty benefits may depend on
+                            membership status, voucher availability,
+                            participating locations and current
+                            provider rules. Different programmes'
+                            points are not directly comparable.
+                        </p>
+
+                        <p class="wallet-footnote">
+                            🤖 Choosing “Ask AI” sends the programme
+                            names, balances and activity you entered
+                            to PerkPilot's AI service. It will not
+                            access your loyalty accounts or redeem
+                            points for you.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ORIGINAL SMART LOYALTY ADVISOR -->
         <section class="advisor-section" id="advisor">
 
             <div class="container">
@@ -292,7 +856,9 @@
                         PERSONALISED FOR YOU
                     </span>
 
-                    <h2>Find Your Perfect Loyalty Match</h2>
+                    <h2>
+                        Find Your Perfect Loyalty Match
+                    </h2>
 
                     <p>
                         Tell us what matters to you.
@@ -319,51 +885,56 @@
                             <div class="interest-grid">
 
                                 <label class="interest-option">
-                                    <input type="checkbox"
-                                           name="interests"
-                                           value="movies">
+                                    <input
+                                        type="checkbox"
+                                        name="interests"
+                                        value="movies">
                                     🎬 Movies
                                 </label>
 
                                 <label class="interest-option">
-                                    <input type="checkbox"
-                                           name="interests"
-                                           value="food">
+                                    <input
+                                        type="checkbox"
+                                        name="interests"
+                                        value="food">
                                     🍔 Food & Dining
                                 </label>
 
                                 <label class="interest-option">
-                                    <input type="checkbox"
-                                           name="interests"
-                                           value="groceries">
+                                    <input
+                                        type="checkbox"
+                                        name="interests"
+                                        value="groceries">
                                     🛒 Groceries
                                 </label>
 
                                 <label class="interest-option">
-                                    <input type="checkbox"
-                                           name="interests"
-                                           value="shopping">
+                                    <input
+                                        type="checkbox"
+                                        name="interests"
+                                        value="shopping">
                                     🛍️ Shopping
                                 </label>
 
                                 <label class="interest-option">
-                                    <input type="checkbox"
-                                           name="interests"
-                                           value="travel">
+                                    <input
+                                        type="checkbox"
+                                        name="interests"
+                                        value="travel">
                                     ✈️ Travel
                                 </label>
 
                                 <label class="interest-option">
-                                    <input type="checkbox"
-                                           name="interests"
-                                           value="fitness">
+                                    <input
+                                        type="checkbox"
+                                        name="interests"
+                                        value="fitness">
                                     💪 Fitness
                                 </label>
 
                             </div>
 
                         </fieldset>
-
 
                         <div class="form-group">
 
@@ -372,9 +943,10 @@
                                 per month on these interests?
                             </label>
 
-                            <select id="spending"
-                                    name="spending"
-                                    required>
+                            <select
+                                id="spending"
+                                name="spending"
+                                required>
 
                                 <option value="">
                                     Select your spending range
@@ -400,16 +972,16 @@
 
                         </div>
 
-
                         <div class="form-group">
 
                             <label for="priority">
                                 What matters most to you?
                             </label>
 
-                            <select id="priority"
-                                    name="priority"
-                                    required>
+                            <select
+                                id="priority"
+                                name="priority"
+                                required>
 
                                 <option value="">
                                     Choose your priority
@@ -439,7 +1011,6 @@
 
                         </div>
 
-
                         <div class="form-group">
 
                             <label for="membership">
@@ -447,9 +1018,10 @@
                                 a membership?
                             </label>
 
-                            <select id="membership"
-                                    name="membership"
-                                    required>
+                            <select
+                                id="membership"
+                                name="membership"
+                                required>
 
                                 <option value="">
                                     Select an option
@@ -467,9 +1039,9 @@
 
                         </div>
 
-
-                        <button type="submit"
-                                class="primary-button submit-button">
+                        <button
+                            type="submit"
+                            class="primary-button submit-button">
 
                             ✨ Find My Loyalty Matches
 
@@ -479,23 +1051,29 @@
 
                 </div>
 
-
-                <!-- RECOMMENDATION RESULTS -->
-                <div id="results"
-                     class="results-section"
-                     aria-live="polite"
-                     hidden>
+                <!-- ORIGINAL RECOMMENDATION RESULTS -->
+                <div
+                    id="results"
+                    class="results-section"
+                    aria-live="polite"
+                    hidden>
 
                     <div class="section-heading">
-                        <h2>Your Recommended Programmes</h2>
+
+                        <h2>
+                            Your Recommended Programmes
+                        </h2>
+
                         <p>
                             These programmes are matched
                             to your selected preferences.
                         </p>
+
                     </div>
 
-                    <div id="recommendationList"
-                         class="recommendation-grid">
+                    <div
+                        id="recommendationList"
+                        class="recommendation-grid">
                     </div>
 
                 </div>
@@ -503,7 +1081,6 @@
             </div>
 
         </section>
-
 
         <!-- FINAL CALL TO ACTION -->
         <section class="final-cta">
@@ -519,8 +1096,9 @@
                     just a few clicks away.
                 </p>
 
-                <a href="#advisor"
-                   class="primary-button">
+                <a
+                    href="#advisor"
+                    class="primary-button">
                     Discover My Rewards →
                 </a>
 
@@ -530,7 +1108,6 @@
 
     </main>
 
-
     <!-- FOOTER -->
     <footer class="footer">
 
@@ -538,6 +1115,7 @@
 
             <div>
                 <h3>✦ PerkPilot</h3>
+
                 <p>
                     Your lifestyle.
                     Your rewards.
@@ -568,92 +1146,666 @@
 
     </footer>
 
-<!-- ===================================
-     PERKPILOT LOYALTY CHATBOT
-     =================================== -->
+    <!-- =====================================
+         EXISTING PERKPILOT AI CHATBOT
+    ====================================== -->
+    <div class="chatbot-container">
 
-<div class="chatbot-container">
+        <button
+            id="chatbotToggle"
+            class="chatbot-toggle"
+            type="button"
+            aria-label="Open PerkPilot chatbot"
+            aria-expanded="false"
+            aria-controls="chatbotWindow">
+            🤖
+        </button>
 
-    <!-- Floating chatbot button -->
-    <button
-        id="chatbotToggle"
-        class="chatbot-toggle"
-        type="button"
-        aria-label="Open PerkPilot chatbot"
-        aria-expanded="false"
-        aria-controls="chatbotWindow">
-        🤖
-    </button>
+        <section
+            id="chatbotWindow"
+            class="chatbot-window"
+            aria-label="PerkPilot Loyalty Assistant"
+            hidden>
 
-    <!-- Chatbot window -->
-    <section
-        id="chatbotWindow"
-        class="chatbot-window"
-        aria-label="PerkPilot Loyalty Assistant"
-        hidden>
+            <div class="chatbot-header">
 
-        <div class="chatbot-header">
+                <div>
+                    <h3>🤖 PerkPilot Assistant</h3>
+                    <p>Your Personal Loyalty Advisor</p>
+                </div>
 
-            <div>
-                <h3>🤖 PerkPilot Assistant</h3>
-                <p>Your Personal Loyalty Advisor</p>
+                <button
+                    id="closeChatbot"
+                    type="button"
+                    aria-label="Close chatbot">
+                    ✕
+                </button>
+
             </div>
 
-            <button
-                id="closeChatbot"
-                type="button"
-                aria-label="Close chatbot">
-                ✕
-            </button>
+            <div
+                id="chatbotMessages"
+                class="chatbot-messages"
+                role="log"
+                aria-live="polite">
 
-        </div>
+                <div class="bot-message">
+                    Hey there! 👋💜
+                    Welcome to PerkPilot!
 
-        <!-- Conversation area -->
-        <div
-            id="chatbotMessages"
-            class="chatbot-messages"
-            role="log"
-            aria-live="polite">
+                    Tell me what you enjoy, like
+                    movies, food, shopping or travel,
+                    and I'll help you explore
+                    suitable loyalty programmes.
+                </div>
 
-            <div class="bot-message">
-                Hey there! 👋💜
-                Welcome to PerkPilot!
-
-                Tell me what you enjoy, like
-                movies, food, shopping or travel,
-                and I'll help you explore
-                suitable loyalty programmes.
             </div>
 
-        </div>
+            <form
+                id="chatbotForm"
+                class="chatbot-input-area">
 
-        <!-- Message input -->
-        <form
-            id="chatbotForm"
-            class="chatbot-input-area">
+                <input
+                    id="chatbotInput"
+                    type="text"
+                    placeholder="Ask me about rewards..."
+                    aria-label="Your message"
+                    autocomplete="off"
+                    required>
 
-            <input
-                id="chatbotInput"
-                type="text"
-                placeholder="Ask me about rewards..."
-                aria-label="Your message"
-                autocomplete="off"
-                required>
+                <button
+                    type="submit"
+                    aria-label="Send message">
+                    ➤
+                </button>
 
-            <button
-                type="submit"
-                aria-label="Send message">
-                ➤
-            </button>
+            </form>
 
-        </form>
+        </section>
 
-    </section>
+    </div>
 
-</div>
+    <!-- EXISTING CHATBOT CODE -->
+    <script src="bot.js"></script>
 
-<!-- Chatbot JavaScript -->
-<script src="bot.js"></script>
+    <!-- NEW WALLET DATA STORAGE CODE -->
+    <script src="wallet.js"></script>
+
+    <!-- =====================================
+         NEW WALLET INTERFACE LOGIC
+    ====================================== -->
+    <script>
+    (() => {
+        'use strict';
+
+        const byId = id => document.getElementById(id);
+
+        const form = byId('walletForm');
+        const accountsContainer = byId('walletAccounts');
+        const walletStatus = byId('walletMessage');
+        const goalStatus = byId('walletGoalStatus');
+        const suggestions = byId('walletSuggestions');
+
+        // Make sure wallet.js is correctly loaded
+        if (typeof PerkPilotWallet === 'undefined') {
+            walletStatus.textContent =
+                'Wallet could not start. Ensure wallet.js is next to index.html.';
+
+            walletStatus.classList.add('error');
+            return;
+        }
+
+        // User activities
+        const categories = {
+            movies: 'watch a movie',
+            food: 'eat out or buy a drink',
+            groceries: 'buy groceries',
+            shopping: 'go shopping',
+            travel: 'travel',
+            fitness: 'enjoy fitness or wellness activities',
+            anything: 'explore possible redemptions'
+        };
+
+        /*
+           Category hints only.
+           These are NOT confirmed redemption offers.
+        */
+        const hints = [
+            {
+                keys: ['ster-kinekor', 'sk club'],
+                goals: ['movies'],
+                tip: 'Check current SK Club cinema benefits, participation and any redemption conditions.'
+            },
+            {
+                keys: ['vitality', 'discovery'],
+                goals: ['movies', 'fitness', 'travel'],
+                tip: 'Check your particular Discovery/Vitality membership, status and current partner benefits.'
+            },
+            {
+                keys: ['smart shopper', 'pick n pay', 'pnp'],
+                goals: ['groceries', 'shopping'],
+                tip: 'Check the Smart Shopper app or provider terms for current ways to use rewards.'
+            },
+            {
+                keys: ['clicks'],
+                goals: ['shopping'],
+                tip: 'Check the Clicks ClubCard app for current rewards, cashback and redemption conditions.'
+            },
+            {
+                keys: ['xtra savings', 'checkers'],
+                goals: ['groceries', 'shopping'],
+                tip: 'Check current member savings. Some benefits are discounts rather than redeemable points.'
+            },
+            {
+                keys: ['spur'],
+                goals: ['food'],
+                tip: 'Check your Spur Family Club rewards and participating locations.'
+            },
+            {
+                keys: ['starbucks'],
+                goals: ['food'],
+                tip: 'Check your Starbucks rewards balance and current eligible items in the app.'
+            },
+            {
+                keys: ['voyager', 'south african airways', 'saa'],
+                goals: ['travel'],
+                tip: 'Check airline award availability, redemption requirements and applicable taxes.'
+            },
+            {
+                keys: ['ebucks', 'e-bucks'],
+                goals: [
+                    'movies',
+                    'food',
+                    'groceries',
+                    'shopping',
+                    'travel'
+                ],
+                tip: 'Check your current eBucks redemption partners and any programme-specific rules.'
+            }
+        ];
+
+        const formatBalance = value =>
+            Number(value).toLocaleString('en-ZA', {
+                maximumFractionDigits: 2
+            });
+
+        // Display success or error messages
+        function setStatus(element, message, isError = false) {
+            element.textContent = message;
+            element.classList.toggle('error', isError);
+        }
+
+        // Get valid saved loyalty accounts
+        function getAccounts() {
+            return PerkPilotWallet.getAll().filter(account =>
+                account &&
+                typeof account.programme === 'string' &&
+                Number.isFinite(Number(account.points))
+            );
+        }
+
+        // Safely create HTML elements
+        function make(tag, className, content) {
+            const element = document.createElement(tag);
+
+            if (className) {
+                element.className = className;
+            }
+
+            if (content !== undefined) {
+                element.textContent = content;
+            }
+
+            return element;
+        }
+
+        // ==================================
+        // SHOW SAVED WALLET ACCOUNTS
+        // ==================================
+        function renderAccounts() {
+            const accounts = getAccounts();
+
+            accountsContainer.replaceChildren();
+
+            if (!accounts.length) {
+                accountsContainer.appendChild(
+                    make(
+                        'p',
+                        'wallet-empty',
+                        'No programmes saved yet. Add your existing loyalty programmes above.'
+                    )
+                );
+                return;
+            }
+
+            accounts.forEach(account => {
+
+                const row = make(
+                    'div',
+                    'wallet-account'
+                );
+
+                row.appendChild(
+                    make('div', 'wallet-icon', '🎁')
+                );
+
+                const detail = make(
+                    'div',
+                    'wallet-account-details'
+                );
+
+                detail.appendChild(
+                    make(
+                        'span',
+                        'wallet-account-name',
+                        account.programme
+                    )
+                );
+
+                detail.appendChild(
+                    make(
+                        'span',
+                        'wallet-balance',
+                        `${formatBalance(account.points)} (user-entered balance)`
+                    )
+                );
+
+                row.appendChild(detail);
+
+                const actions = make(
+                    'div',
+                    'wallet-account-actions'
+                );
+
+                // EDIT BALANCE BUTTON
+                const edit = make(
+                    'button',
+                    'wallet-small-button',
+                    'Edit'
+                );
+
+                edit.type = 'button';
+
+                edit.setAttribute(
+                    'aria-label',
+                    `Edit ${account.programme} balance`
+                );
+
+                edit.addEventListener('click', () => {
+
+                    const input = prompt(
+                        `New balance for ${account.programme}:`,
+                        String(account.points)
+                    );
+
+                    if (input === null) {
+                        return;
+                    }
+
+                    if (input.trim() === '') {
+                        return setStatus(
+                            walletStatus,
+                            'Enter a balance.',
+                            true
+                        );
+                    }
+
+                    try {
+                        PerkPilotWallet.update(
+                            account.id,
+                            input
+                        );
+
+                        setStatus(
+                            walletStatus,
+                            `${account.programme} balance updated.`
+                        );
+
+                        renderAccounts();
+                        suggestions.hidden = true;
+
+                    } catch (error) {
+                        setStatus(
+                            walletStatus,
+                            error.message || 'Could not update balance.',
+                            true
+                        );
+                    }
+
+                });
+
+                // REMOVE PROGRAMME BUTTON
+                const remove = make(
+                    'button',
+                    'wallet-small-button danger',
+                    'Remove'
+                );
+
+                remove.type = 'button';
+
+                remove.setAttribute(
+                    'aria-label',
+                    `Remove ${account.programme} from wallet`
+                );
+
+                remove.addEventListener('click', () => {
+
+                    if (!confirm(
+                        `Remove ${account.programme} from your saved wallet?`
+                    )) {
+                        return;
+                    }
+
+                    try {
+                        PerkPilotWallet.remove(account.id);
+
+                        renderAccounts();
+                        suggestions.hidden = true;
+
+                        setStatus(
+                            walletStatus,
+                            'Programme removed.'
+                        );
+
+                    } catch (error) {
+                        setStatus(
+                            walletStatus,
+                            'Could not remove programme.',
+                            true
+                        );
+                    }
+
+                });
+
+                actions.append(edit, remove);
+                row.appendChild(actions);
+                accountsContainer.appendChild(row);
+
+            });
+        }
+
+        // ==================================
+        // ADD LOYALTY PROGRAMME
+        // ==================================
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+
+            const name = byId(
+                'walletProgramme'
+            ).value.trim();
+
+            const points = byId(
+                'walletPoints'
+            ).value.trim();
+
+            if (!name || !points) {
+                return setStatus(
+                    walletStatus,
+                    'Enter both a programme and a balance.',
+                    true
+                );
+            }
+
+            try {
+                PerkPilotWallet.add(name, points);
+
+                form.reset();
+                renderAccounts();
+
+                suggestions.hidden = true;
+
+                setStatus(
+                    walletStatus,
+                    `${name} added to your wallet!`
+                );
+
+            } catch (error) {
+                setStatus(
+                    walletStatus,
+                    error.message || 'Could not save programme.',
+                    true
+                );
+            }
+        });
+
+        // ==================================
+        // IDENTIFY POTENTIAL BENEFITS
+        // ==================================
+        function getHint(programme) {
+            const name = programme.toLowerCase();
+
+            return hints.find(hint =>
+                hint.keys.some(key =>
+                    name.includes(key)
+                )
+            ) || null;
+        }
+
+        // ==================================
+        // RECOMMEND USES FOR SAVED REWARDS
+        // ==================================
+        function renderSuggestions() {
+
+            const goal = byId('walletGoal').value;
+            const accounts = getAccounts();
+
+            suggestions.replaceChildren();
+            suggestions.hidden = false;
+
+            if (!accounts.length) {
+
+                suggestions.appendChild(
+                    make(
+                        'p',
+                        'wallet-empty',
+                        'Add at least one loyalty programme to your wallet first.'
+                    )
+                );
+
+                return setStatus(
+                    goalStatus,
+                    'Your wallet is empty.',
+                    true
+                );
+            }
+
+            setStatus(
+                goalStatus,
+                `Looking at your wallet for ways to ${categories[goal]}…`
+            );
+
+            const matches = accounts
+                .map(account => ({
+                    account,
+                    hint: getHint(account.programme)
+                }))
+                .filter(item =>
+                    goal === 'anything' ||
+                    (
+                        item.hint &&
+                        item.hint.goals.includes(goal)
+                    )
+                );
+
+            suggestions.appendChild(
+                make(
+                    'h3',
+                    '',
+                    'Potential programmes to check'
+                )
+            );
+
+            if (!matches.length) {
+
+                suggestions.appendChild(
+                    make(
+                        'p',
+                        'wallet-empty',
+                        'No obvious programme match was found for this activity. That does not mean your other memberships have no suitable benefits. Ask the AI assistant or check the providers’ official reward catalogues.'
+                    )
+                );
+
+                return;
+            }
+
+            matches.forEach(({ account, hint }) => {
+
+                const card = make(
+                    'article',
+                    'wallet-result'
+                );
+
+                card.appendChild(
+                    make(
+                        'span',
+                        'wallet-result-tag',
+                        'Potential match · check eligibility'
+                    )
+                );
+
+                card.appendChild(
+                    make(
+                        'h4',
+                        '',
+                        account.programme
+                    )
+                );
+
+                card.appendChild(
+                    make(
+                        'p',
+                        '',
+                        `Your entered balance: ${formatBalance(account.points)}.`
+                    )
+                );
+
+                card.appendChild(
+                    make(
+                        'p',
+                        '',
+                        hint
+                            ? hint.tip
+                            : 'Check the programme’s official catalogue and terms for currently available uses of your balance.'
+                    )
+                );
+
+                suggestions.appendChild(card);
+
+            });
+
+            suggestions.appendChild(
+                make(
+                    'p',
+                    'wallet-footnote',
+                    'These are category-based suggestions, NOT a confirmation that your points can be spent on this activity. Ask AI for more details, then verify the specific reward and balance requirements with the provider.'
+                )
+            );
+
+        }
+
+        // ==================================
+        // EXPLORE REWARDS BUTTON
+        // ==================================
+        byId('walletGoalForm').addEventListener(
+            'submit',
+            event => {
+                event.preventDefault();
+                renderSuggestions();
+            }
+        );
+
+        // ==================================
+        // SEND WALLET CONTEXT TO AI CHATBOT
+        // ==================================
+        byId('walletAskAI').addEventListener(
+            'click',
+            () => {
+
+                const accounts = getAccounts();
+
+                if (!accounts.length) {
+                    return setStatus(
+                        goalStatus,
+                        'Add your loyalty balances before asking AI.',
+                        true
+                    );
+                }
+
+                const chatInput = byId('chatbotInput');
+                const chatForm = byId('chatbotForm');
+                const chatToggle = byId('chatbotToggle');
+                const chatWindow = byId('chatbotWindow');
+
+                if (!chatInput || !chatForm) {
+                    return setStatus(
+                        goalStatus,
+                        'AI chatbot is not available on this page.',
+                        true
+                    );
+                }
+
+                const goal = byId('walletGoal').value;
+
+                const detail = byId(
+                    'walletDetails'
+                ).value.trim().slice(0, 240);
+
+                const balances = accounts.map(account =>
+                    `${account.programme}: ${formatBalance(account.points)} (user-entered balance)`
+                ).join('; ');
+
+                const message =
+                    `I want to ${categories[goal]}.` +
+                    `${detail ? ` More detail: ${detail}.` : ''} ` +
+                    `My existing loyalty programmes and balances are: ${balances}. ` +
+                    'Which of these programmes might help? ' +
+                    'Distinguish points, vouchers, cashback and membership discounts. ' +
+                    'Do not invent redemption rates, exact discounts or eligibility. ' +
+                    'Tell me what needs checking and how to redeem if verified.';
+
+                // Open the existing chatbot
+                if (
+                    chatWindow &&
+                    chatWindow.hidden &&
+                    chatToggle
+                ) {
+                    chatToggle.click();
+                }
+
+                // Put the user wallet context into chatbot
+                chatInput.value = message;
+
+                setStatus(
+                    goalStatus,
+                    'Your wallet details are being sent to the AI assistant in this message.'
+                );
+
+                // Submit through the existing chatbot
+                if (
+                    typeof chatForm.requestSubmit === 'function'
+                ) {
+                    chatForm.requestSubmit();
+
+                } else {
+                    chatForm.querySelector(
+                        'button[type="submit"]'
+                    )?.click();
+                }
+
+            }
+        );
+
+        // Update wallet whenever data changes
+        window.addEventListener(
+            'perkpilot:wallet-updated',
+            renderAccounts
+        );
+
+        // Render saved balances on page load
+        renderAccounts();
+
+    })();
+    </script>
 
 </body>
 </html>
